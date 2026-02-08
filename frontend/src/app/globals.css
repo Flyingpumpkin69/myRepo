@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+@theme {
+  /* Base Colors - Will be overridden by theme */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-neon-green: var(--neon-green);
+  --color-neon-cyan: var(--neon-cyan);
+  --color-neon-purple: var(--neon-purple);
+  --color-neon-pink: var(--neon-pink);
+
+  --color-card-bg: var(--card-bg);
+  --color-border-color: var(--border-color);
+
+  --font-pixel: var(--font-pixel);
+  --font-body: var(--font-body);
+
+  --animate-scanline: scanline 8s linear infinite;
+  --animate-flicker: flicker 0.15s infinite;
+
+  @keyframes scanline {
+    0% {
+      transform: translateY(-100%);
+    }
+
+    100% {
+      transform: translateY(100%);
+    }
+  }
+
+  @keyframes flicker {
+    0% {
+      opacity: 0.97;
+    }
+
+    5% {
+      opacity: 0.95;
+    }
+
+    10% {
+      opacity: 0.9;
+    }
+
+    15% {
+      opacity: 0.95;
+    }
+
+    20% {
+      opacity: 0.99;
+    }
+
+    40% {
+      opacity: 0.95;
+    }
+
+    60% {
+      opacity: 0.9;
+    }
+
+    80% {
+      opacity: 0.95;
+    }
+
+    100% {
+      opacity: 0.97;
+    }
+  }
+}
+
+:root {
+  /* DEFAULT: RETRO THEME (Dark) */
+  --background: #0b0f1a;
+  --foreground: #e2e8f0;
+
+  /* Retro Neons */
+  --neon-green: #0f0;
+  --neon-cyan: #0ff;
+  --neon-purple: #b026ff;
+  --neon-pink: #ff00ff;
+
+  /* UI Colors */
+  --card-bg: #0f172a;
+  /* Slate 900 */
+  --border-color: #1e293b;
+  /* Slate 800 */
+}
+
+[data-theme='FUTURE'] {
+  /* FUTURE THEME (Light, Glass, Clean) */
+  --background: #f0f4f8;
+  /* Light blue-grey tint */
+  --foreground: #1e293b;
+  /* Slate 800 */
+
+  /* Soft Modern Accents instead of harsh neons */
+  --neon-green: #10b981;
+  /* Emerald 500 */
+  --neon-cyan: #0ea5e9;
+  /* Sky 500 */
+  --neon-purple: #8b5cf6;
+  /* Violet 500 */
+  --neon-pink: #ec4899;
+  /* Pink 500 */
+
+  /* UI Colors */
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  /* Slate 200 */
+
+  /* Override font behavior if needed */
+  --font-pixel: var(--font-body);
+  /* Use clean font for headings too in Future mode */
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-pixel), monospace;
+}
+
+/* Custom Utilities */
+@utility text-glow-green {
+  text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
+}
+
+@utility text-glow-cyan {
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+}
+
+@utility box-glow-green {
+  box-shadow: 0 0 5px #0f0, 0 0 10px #0f0, inset 0 0 5px #0f0;
+}
+
+@utility crt-overlay {
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg,
+      rgba(255, 0, 0, 0.06),
+      rgba(0, 255, 0, 0.02),
+      rgba(0, 0, 255, 0.06));
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+/* MATRIX SCANLINES */
+.matrix-scanlines {
+  background: repeating-linear-gradient(to bottom,
+      rgba(0, 255, 120, 0.04),
+      rgba(0, 255, 120, 0.04) 1px,
+      transparent 3px,
+      transparent 6px);
+  mix-blend-mode: soft-light;
+}
+
+/* DIGITAL NOISE */
+.matrix-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  opacity: 0.15;
+}
+
+/* SOFT VIGNETTE */
+.matrix-vignette {
+  background: radial-gradient(ellipse at center,
+      rgba(0, 0, 0, 0) 60%,
+      rgba(0, 0, 0, 0.45) 100%);
+}
+
+/* ANIMATION */
+@keyframes matrixScan {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* MOBILE SAFETY */
+@media (max-width: 768px) {
+
+  .matrix-scanlines,
+  .matrix-noise,
+  .matrix-vignette {
+    display: none;
+  }
+}
+
+.neon-heading {
+  color: #00ff88;
+  text-shadow:
+    0 0 6px rgba(0, 255, 136, 0.6),
+    0 0 20px rgba(0, 255, 136, 0.4);
+}
