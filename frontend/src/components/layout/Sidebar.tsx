@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Home, User, Code, Server, Mail } from "lucide-react";
+import { Home, User, Code, Server, Mail, X } from "lucide-react";
 import { clsx } from "clsx";
 
 const navItems = [
@@ -15,17 +15,36 @@ const navItems = [
     { name: "CONTACT", path: "/contact", icon: Mail },
 ];
 
-const Sidebar = () => {
+interface SidebarProps {
+    isOpen?: boolean;
+    onClose?: () => void;
+}
+
+const Sidebar = ({ isOpen = false, onClose }: SidebarProps) => {
     const pathname = usePathname();
 
+    const sidebarClasses = clsx(
+        "fixed left-0 top-0 h-full w-64 bg-background border-r-2 border-border-color z-40 flex flex-col transition-transform duration-300 md:translate-x-0",
+        isOpen ? "translate-x-0" : "-translate-x-full"
+    );
+
     return (
-        <aside className="fixed left-0 top-0 h-full w-20 md:w-64 bg-background border-r-2 border-border-color z-40 hidden md:flex flex-col transition-colors duration-300">
+        <aside className={sidebarClasses}>
             {/* Header / Logo Area */}
-            <div className="p-6 border-b-2 border-border-color">
-                <h1 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-neon-green to-neon-cyan bg-clip-text text-transparent animate-pulse">
-                    YASHRAJ.SYS
-                </h1>
-                <p className="text-xs text-slate-500 mt-1 font-mono">v2.0.4 ONLINE</p>
+            <div className="p-6 border-b-2 border-border-color flex justify-between items-center">
+                <div>
+                    <h1 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-neon-green to-neon-cyan bg-clip-text text-transparent animate-pulse">
+                        YASHRAJ.SYS
+                    </h1>
+                    <p className="text-xs text-slate-500 mt-1 font-mono">v2.0.4 ONLINE</p>
+                </div>
+                {/* Mobile Close Button */}
+                <button
+                    onClick={onClose}
+                    className="md:hidden text-slate-400 hover:text-white"
+                >
+                    <X className="w-5 h-5" />
+                </button>
             </div>
 
             {/* Navigation */}
@@ -33,7 +52,7 @@ const Sidebar = () => {
                 {navItems.map((item) => {
                     const isActive = pathname === item.path;
                     return (
-                        <Link key={item.path} href={item.path}>
+                        <Link key={item.path} href={item.path} onClick={onClose}>
                             <motion.div
                                 className={clsx(
                                     "relative flex items-center gap-4 px-6 py-3 cursor-pointer group overflow-hidden transition-all duration-300",
@@ -54,7 +73,7 @@ const Sidebar = () => {
 
                                 <item.icon className={clsx("w-5 h-5 z-10", isActive && "animate-pulse")} />
 
-                                <span className="font-mono text-sm tracking-wider z-10 hidden md:block group-hover:text-shadow-green">
+                                <span className="font-mono text-sm tracking-wider z-10 block group-hover:text-shadow-green">
                                     {item.name}
                                 </span>
 
