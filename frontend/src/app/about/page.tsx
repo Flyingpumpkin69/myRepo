@@ -12,13 +12,16 @@ export default function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
+                className="bg-card-bg/50 border border-border-color p-8 rounded-xl backdrop-blur-sm relative overflow-hidden"
             >
-                <h1 className="text-3xl md:text-4xl text-neon-green mb-2 text-glow-green">
-                    <span className="mr-4">{">"}</span>
+                <div className="absolute top-0 left-0 w-1 h-full bg-neon-green" />
+                <h1 className="text-3xl md:text-5xl text-neon-green mb-4 text-glow-green font-pixel">
+                    <span className="mr-4 animate-pulse opacity-70">{">"}</span>
                     PROFILE_MODULE
                 </h1>
-                <p className="text-slate-400 font-mono text-sm md:text-base max-w-2xl">
-                 Full Stack Developer with a passion for building scalable infrastructure and immersive web experiences With Spices of A.I.
+                <p className="text-slate-300 font-mono text-sm md:text-lg max-w-3xl leading-relaxed">
+                    Full Stack Developer with a passion for building scalable infrastructure and immersive web experiences with spices of A.I.
+                    I specialize in turning complex problems into elegant, futuristic solutions.
                 </p>
             </motion.div>
 
@@ -29,23 +32,32 @@ export default function AboutPage() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <div className="flex items-center gap-2 mb-6 border-b border-slate-800 pb-2">
-                        <div className="w-2 h-2 bg-neon-purple animate-pulse" />
-                        <h2 className="text-xl font-bold text-foreground">SKILL_MATRIX</h2>
+                    <div className="flex items-center gap-3 mb-8 border-b border-border-color pb-4">
+                        <div className="w-3 h-3 bg-neon-purple rounded-sm animate-pulse shadow-[0_0_10px_#b026ff]" />
+                        <h2 className="text-2xl font-bold text-foreground font-pixel tracking-wider">SKILL_MATRIX</h2>
                     </div>
-                    <SkillScanner />
 
-                    <div className="mt-12 p-6 border border-slate-800 bg-black/40 rounded-lg">
-                        <h3 className="text-neon-cyan font-mono mb-2 text-sm">CERTIFICATIONS</h3>
-                        <ul className="space-y-2 text-sm text-slate-400 font-mono">
-                            <li className="flex items-center gap-2">
-                                <span className="text-neon-green">✔</span> AWS Certified Solutions Architect
+                    <div className="bg-card-bg/40 p-6 rounded-xl border border-border-color/50 mb-8">
+                        <SkillScanner />
+                    </div>
+
+                    <div className="p-6 border border-neon-cyan/30 bg-card-bg/60 rounded-xl hover:border-neon-cyan/70 transition-colors duration-300 group">
+                        <h3 className="text-neon-cyan font-mono mb-4 text-sm flex items-center gap-2">
+                            <span className="inline-block w-2 h-2 bg-neon-cyan rounded-full"></span>
+                            CERTIFICATIONS
+                        </h3>
+                        <ul className="space-y-3 text-sm text-slate-300 font-mono">
+                            <li className="flex items-center gap-3 group-hover:translate-x-1 transition-transform">
+                                <span className="text-neon-green shadow-[0_0_5px_#0f0] rounded-full px-1">✔</span>
+                                AWS Certified Solutions Architect
                             </li>
-                            <li className="flex items-center gap-2">
-                                <span className="text-neon-green">✔</span> Certified Kubernetes Administrator (CKA)
+                            <li className="flex items-center gap-3 group-hover:translate-x-1 transition-transform delay-75">
+                                <span className="text-neon-green shadow-[0_0_5px_#0f0] rounded-full px-1">✔</span>
+                                Certified Kubernetes Administrator (CKA)
                             </li>
-                            <li className="flex items-center gap-2">
-                                <span className="text-neon-green">✔</span> Docker Certified Associate
+                            <li className="flex items-center gap-3 group-hover:translate-x-1 transition-transform delay-150">
+                                <span className="text-neon-green shadow-[0_0_5px_#0f0] rounded-full px-1">✔</span>
+                                Docker Certified Associate
                             </li>
                         </ul>
                     </div>
@@ -57,11 +69,14 @@ export default function AboutPage() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                 >
-                    <div className="flex items-center gap-2 mb-6 border-b border-slate-800 pb-2">
-                        <div className="w-2 h-2 bg-neon-cyan animate-pulse" />
-                        <h2 className="text-xl font-bold text-foreground">MISSION_TIMELINE</h2>
+                    <div className="flex items-center gap-3 mb-8 border-b border-border-color pb-4">
+                        <div className="w-3 h-3 bg-neon-cyan rounded-sm animate-pulse shadow-[0_0_10px_#0ff]" />
+                        <h2 className="text-2xl font-bold text-foreground font-pixel tracking-wider">MISSION_TIMELINE</h2>
                     </div>
-                    <Timeline />
+
+                    <div className="bg-card-bg/40 p-6 rounded-xl border border-border-color/50">
+                        <Timeline />
+                    </div>
                 </motion.div>
             </div>
         </div>
