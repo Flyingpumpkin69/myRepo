@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Home, User, Code, Server, Mail, X, Calendar, Calculator, Gamepad2 } from "lucide-react";
+import { Home, User, Code, Server, Mail, X, Calendar, Calculator, Gamepad2, Swords } from "lucide-react";
 import { clsx } from "clsx";
 
 const navItems = [
@@ -16,6 +16,7 @@ const navItems = [
     { name: "CALENDAR", path: "/calendar", icon: Calendar },
     { name: "CALC", path: "/calculator", icon: Calculator },
     { name: "GAME", path: "/game", icon: Gamepad2 },
+    { name: "CONTRA", path: "/contra", icon: Swords },
 ];
 
 interface SidebarProps {
